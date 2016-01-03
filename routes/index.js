@@ -12,6 +12,10 @@ router.get('/', function(req, res) {
 
 router.get('/tracks', trackController.list);
 
+router.get('/server.cdpsfy.es', function(req,res) {
+	res.render('index');
+});
+
 router.get('/tracks/new', trackController.new);
 
 router.get('/tracks/:trackId', trackController.show);
