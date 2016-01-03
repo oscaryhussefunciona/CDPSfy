@@ -32,7 +32,7 @@ exports.create = function (req, res) {
 
 	// Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
 	// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
-	var url = '10.1.1.1/tracks.cdpsfy.es';
+	var url = '/TODO';
 
 	// Escribe los metadatos de la nueva canción en el registro.
 	track_model.tracks[id] = {
