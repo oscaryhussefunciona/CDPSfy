@@ -1,5 +1,7 @@
 var fs = require('fs');
 var track_model = require('./../models/track');
+var express = require('express');
+//var multer  = require('multer');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
@@ -31,8 +33,10 @@ exports.create = function (req, res) {
 	var name = track.originalname.split('.')[0];
 
 	// Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
+	// Se ha realizado un envío del formulario al lb
+
 	// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
-	var url = '10.1.1.1/tracks.cdpsfy.es';
+	var url = 'http://tracks.cdpsfy.es';
 
 	// Escribe los metadatos de la nueva canción en el registro.
 	track_model.tracks[id] = {
