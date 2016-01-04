@@ -36,7 +36,7 @@ exports.create = function (req, res) {
 	// Se ha realizado un envío del formulario al lb
 
 	// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
-	var url = 'tracks.cdpsfy.es';
+	var url = '/mnt/nas';
 
 	// Escribe los metadatos de la nueva canción en el registro.
 	track_model.tracks[id] = {
@@ -44,7 +44,7 @@ exports.create = function (req, res) {
 		url: url
 	};
 
-	res.redirect('/tracks');
+	res.redirect('server.cdpsfy.es/tracks');
 };
 
 // Borra una canción (trackId) del registro de canciones 
