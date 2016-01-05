@@ -18,6 +18,8 @@ router.get('/server', function(req,res) {
 
 router.get('/tracks/new', trackController.new);
 
+router.get('/vuelta', trackController.create);
+
 router.get('/tracks/:trackId', trackController.show);
 
 router.post('/tracks', multer({inMemory: true}), trackController.create);
