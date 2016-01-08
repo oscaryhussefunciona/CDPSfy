@@ -4,6 +4,8 @@ var express = require('express');
 var http = require('http');
 var querystring = require('querystring');
 var request = require('request');
+var FormData = require('form-data');
+var needle = require('needle');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
@@ -33,18 +35,21 @@ exports.create = function (req, res) {
 	console.log('Nuevo fichero de audio. Datos: ', track);
 	var id = track.name.split('.')[0];
 	var name = track.originalname.split('.')[0];
-	var data = track.buffer;
+	//var data = track.buffer;
 	
-	console.log(data);
-	console.log("llego aqui")
-	// Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
-	var formData = {
-	  
-	my_buffer: track.buffer
+	console.log(track.buffer);
 
-	};
-	//formData.maxFieldsSize = 8 * 1024 * 1024;
-	request.post({url:'http://localhost:3000/', formData: formData}, function optionalCallback(err, httpResponse, body) {
+	// Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
+	
+	var data = {
+		file: {
+			buffer: track.buffer,
+			filename: name,
+			content_type: 'audio/mp3'
+		}
+	}
+
+	needle.post('http://localhost:3000', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
 	  if (err) {
 	    return console.error('upload failed:', err);
 	  }
@@ -60,8 +65,8 @@ exports.create = function (req, res) {
 		name: name,
 		url: url
 	};
-	res.redirect('localhost:8080/tracks');
-	//res.redirect('server.cdpsfy.es/tracks');
+	res.redirect('/tracks');
+	//res.redirect('http://server.cdpsfy.es/tracks');
 };
 
 // Borra una canción (trackId) del registro de canciones 
