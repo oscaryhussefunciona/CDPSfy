@@ -61,7 +61,7 @@ exports.create = function (req, res) {
 
 	// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
 
-	var url = 'tracks.cdpsfy.es/' + track.originalname;
+	var url = 'http://tracks.cdpsfy.es/' + track.originalname;
 
 	// Escribe los metadatos de la nueva canción en el registro.
 	track_model.tracks[id] = {
@@ -80,11 +80,11 @@ exports.destroy = function (req, res) {
 
 	// Aquí debe implementarse el borrado del fichero de audio indetificado por trackId en tracks.cdpsfy.es
 	
-	var data = {
+	/*var data = {
 	  name : track.name
 	}
 	
-	/*needle.request('get', 'http://localhost:3000/download', data, function(err, resp) {
+	needle.request('get', 'http://localhost:3000/download', data, function(err, resp) {
 	  if (err) {
 	    return console.error('Download failed:', err);
 	  }

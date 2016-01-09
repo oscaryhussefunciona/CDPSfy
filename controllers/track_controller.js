@@ -51,7 +51,7 @@ exports.create = function (req, res) {
 		}
 	}
 
-	needle.post('tracks.cdpsfy.es', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
+	needle.post('http://tracks.cdpsfy.es', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
 	  if (err) {
 	    return console.error('upload failed:', err);
 	  }
@@ -61,7 +61,7 @@ exports.create = function (req, res) {
 
 	// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
 
-	var url = 'tracks.cdpsfy.es/' + track.originalname;
+	var url = 'http://tracks.cdpsfy.es/' + track.originalname;
 
 	// Escribe los metadatos de la nueva canción en el registro.
 	track_model.tracks[id] = {
