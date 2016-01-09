@@ -23,6 +23,8 @@ exports.new = function (req, res) {
 exports.show = function (req, res) {
 	var track = track_model.tracks[req.params.trackId];
 	track.id = req.params.trackId;
+	console.log(track);
+	
 	res.render('tracks/show', {track: track});
 };
 
@@ -49,7 +51,7 @@ exports.create = function (req, res) {
 		}
 	}
 
-	needle.post('http://tracks.cdpsfy.es', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
+	needle.post('tracks.cdpsfy.es', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
 	  if (err) {
 	    return console.error('upload failed:', err);
 	  }
@@ -58,7 +60,8 @@ exports.create = function (req, res) {
 	// Se ha realizado un envío del formulario al lb
 
 	// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
-	var url = '/mnt/nas';
+
+	var url = 'tracks.cdpsfy.es/' + track.originalname;
 
 	// Escribe los metadatos de la nueva canción en el registro.
 	track_model.tracks[id] = {
@@ -76,6 +79,19 @@ exports.destroy = function (req, res) {
 	var trackId = req.params.trackId;
 
 	// Aquí debe implementarse el borrado del fichero de audio indetificado por trackId en tracks.cdpsfy.es
+	
+	/*var data = {
+	  name : track.name
+	}
+	
+	needle.request('get', 'http://localhost:3000/download', data, function(err, resp) {
+	  if (err) {
+	    return console.error('Download failed:', err);
+	  }
+	  console.log('Download successful!  Server responded with:', resp.body);
+	  
+	});
+	console.log(track.url);	*/
 
 	// Borra la entrada del registro de datos
 	delete track_model.tracks[trackId];

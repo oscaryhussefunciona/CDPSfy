@@ -22,7 +22,7 @@ router.get('/vuelta', trackController.create);
 
 router.get('/tracks/:trackId', trackController.show);
 
-//router.post('/tracks', multer({inMemory: true}), trackController.create);
+router.post('/tracks', multer({inMemory: true}), trackController.create);
 
 router.delete('/tracks/:trackId', trackController.destroy);
 
