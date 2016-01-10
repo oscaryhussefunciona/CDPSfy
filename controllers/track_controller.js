@@ -37,9 +37,6 @@ exports.create = function (req, res) {
 	console.log('Nuevo fichero de audio. Datos: ', track);
 	var id = track.name.split('.')[0];
 	var name = track.originalname.split('.')[0];
-	//var data = track.buffer;
-	
-	console.log(track.buffer);
 
 	// Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
 	
@@ -69,7 +66,6 @@ exports.create = function (req, res) {
 		url: url
 	};
 	res.redirect('/tracks');
-	//res.redirect('http://server.cdpsfy.es/tracks');
 };
 
 // Borra una canción (trackId) del registro de canciones 
@@ -77,21 +73,17 @@ exports.create = function (req, res) {
 // - Eliminar en tracks.cdpsfy.es el fichero de audio correspondiente a trackId
 exports.destroy = function (req, res) {
 	var trackId = req.params.trackId;
+	var track = track_model.tracks[req.params.trackId];
+	console.log(track.name);
 
 	// Aquí debe implementarse el borrado del fichero de audio indetificado por trackId en tracks.cdpsfy.es
 	
-	/*var data = {
-	  name : track.name
-	}
-	
-	needle.request('get', 'http://localhost:3000/download', data, function(err, resp) {
+	needle.request('delete', 'http://tracks.cdpsfy.es/' + track.name + '.mp3', null, function(err, resp) {
 	  if (err) {
-	    return console.error('Download failed:', err);
+	    return console.error('Delete failed:', err);
 	  }
-	  console.log('Download successful!  Server responded with:', resp.body);
-	  
+	  console.log('Delete successful!  Server responded with:', resp.body);
 	});
-	console.log(track.url);	*/
 
 	// Borra la entrada del registro de datos
 	delete track_model.tracks[trackId];
