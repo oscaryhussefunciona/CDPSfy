@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
+var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
@@ -26,6 +27,15 @@ app.use(methodOverride('_method'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
+
+//CONECTAMOS CON LA BASE DE DATOS
+mongoose.connect('mongodb://10.1.2.15', function(err, res) {
+	if(err) {
+		console.log('ERROR: connecting to Database. ' + err);	
+	} else {
+		console.log('Connected to Database');	
+	}
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

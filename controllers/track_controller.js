@@ -1,16 +1,24 @@
 var fs = require('fs');
-var track_model = require('./../models/track');
+var models = require('./../models');
 var express = require('express');
 var http = require('http');
 var querystring = require('querystring');
 var request = require('request');
 var FormData = require('form-data');
+var mongoose = require('mongoose');
 var needle = require('needle');
+var Tracks = mongoose.model('Track');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
-	var tracks = track_model.tracks;
-	res.render('tracks/index', {tracks: tracks});
+	/*var tracks = track_model.tracks;
+	res.render('tracks/index', {tracks: tracks});*/
+	
+	Tracks.find(function(err, tracks) {
+	    if(err) res.send(500, err.message);
+	    console.log(jsonp(tracks));
+	    res.render('tracks/index', {tracks: tracks});
+	});
 };
 
 // Devuelve la vista del formulario para subir una nueva canción
@@ -21,11 +29,15 @@ exports.new = function (req, res) {
 // Devuelve la vista de reproducción de una canción.
 // El campo track.url contiene la url donde se encuentra el fichero de audio
 exports.show = function (req, res) {
-	var track = track_model.tracks[req.params.trackId];
+	//var track = track_model.tracks[req.params.trackId];
 	track.id = req.params.trackId;
-	console.log(track);
+	console.log(track.id);
 	
-	res.render('tracks/show', {track: track});
+	Tracks.findById(req.params.id, function(err, track) {
+	    if(err) return res.send(500. err.message);
+
+	    res.render('tracks/show', {track: track});
+	});
 };
 
 // Escribe una nueva canción en el registro de canciones.
@@ -61,10 +73,17 @@ exports.create = function (req, res) {
 	var url = 'http://tracks.cdpsfy.es/' + track.originalname;
 
 	// Escribe los metadatos de la nueva canción en el registro.
-	track_model.tracks[id] = {
+	 var new_track = new Tracks({
 		name: name,
-		url: url
-	};
+            	url: url
+	  });
+
+	   new_track.save(function(err, new_track) {
+		if (err) {
+			console.log('Error al subir el audio: ' + err);
+                return res.end(err);
+           }
+	
 	res.redirect('/tracks');
 };
 
