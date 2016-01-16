@@ -12,10 +12,11 @@ track_id: {
 var mongoose = require('mongoose'),  
     Schema   = mongoose.Schema;
 
-var track = new Schema({  
+var trackSchema = new Schema({  
   name:    { type: String },
   url:     { type: String }
-  //urlImg: { type: String }
 });
 
-module.exports = mongoose.model('Track', track);  
+//urlImg: { type: String }
+
+module.exports = mongoose.model('Track', trackSchema);  
