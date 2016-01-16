@@ -32,8 +32,9 @@ exports.show = function (req, res) {
         //var track = track_model.tracks[req.params.trackId];
         //track.id = req.params.trackId;
         //console.log(track.id);
-        var Tracks = mongoose.model('Track');
-        Tracks.findById(req.params.id, function(err, track) {
+        //var Tracks = mongoose.model('Track');
+	console.log(req.params);
+        Tracks.findOne({name: req.params.name}, function(err, track) {
 	    if(err) return res.send(500, err.message);
 
             res.render('tracks/show', {track: track});
@@ -49,7 +50,7 @@ exports.create = function (req, res) {
         console.log('Nuevo fichero de audio. Datos: ', track);
         var id = track.name.split('.')[0];
         var name = track.originalname.split('.')[0];
-        var Tracks = mongoose.model('Track');
+        //var Tracks = mongoose.model('Track');
         // Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
 	
 	var data = {
