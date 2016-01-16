@@ -34,7 +34,7 @@ exports.show = function (req, res) {
 	console.log(track.id);
 	
 	Tracks.findById(req.params.id, function(err, track) {
-	    if(err) return res.send(500. err.message);
+	    if(err) return res.send(500, err.message);
 
 	    res.render('tracks/show', {track: track});
 	});
