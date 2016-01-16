@@ -10,7 +10,7 @@ var Tracks = mongoose.model('Track');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
-        //var Tracks = mongoose.model('Track');
+       
         Tracks.find(function(err, tracks) {
             if(err) res.send(500, err.message);
             res.render('tracks/index', {tracks: tracks});
@@ -27,9 +27,8 @@ exports.new = function (req, res) {
 
 exports.show = function (req, res) {
     
-        //var Tracks = mongoose.model('Track');
 	console.log(req.params);
-        Tracks.findOne({name: req.params.name}, function(err, track) {
+        Tracks.findOne({name: req.params.trackId}, function(err, track) {
 	    if(err) return res.send(500, err.message);
             res.render('tracks/show', {track: track});
         });
@@ -42,19 +41,32 @@ exports.show = function (req, res) {
 exports.create = function (req, res) {
         var track = req.files.track;
         console.log('Nuevo fichero de audio. Datos: ', track);
-        var id = track.name.split('.')[0];
-        var name = track.originalname.split('.')[0];
-        
-	//var Tracks = mongoose.model('Track');
-        // Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
+	var id = track.name.split('.')[0];
+	var name = track.originalname.split('.')[0];
+	var datos = track.buffer;
+	var original = track.originalname; 
+	
+	var image = req.files.image;
+	console.log('Nuevo fichero de imagen. Datos: ', image);
+	var nameImg = image.originalname.split('.')[0];
+	var datosImg =  image.buffer;
+	var originalImg = image.originalname;
+	
+	console.log('Nueva portada. Datos: ', image);
 	
 	var data = {
-                file: {
-                        buffer: track.buffer,
-                        filename: name,
-                        content_type: 'audio/mp3'
-                }
-        }
+	   image: {
+		    buffer       : datosImg,
+		    filename     : nameImg,
+		    content_type: 'image/jpg'
+		  },
+		  
+	   track:  {
+		    buffer       : datos,
+		    filename     : name,
+		    content_type: 'audio/mp3' 
+		  }
+	}
 
         needle.post('http://tracks.cdpsfy.es', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
           if (err) {

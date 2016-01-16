@@ -14,9 +14,8 @@ var mongoose = require('mongoose'),
 
 var trackSchema = new Schema({  
   name:    { type: String },
-  url:     { type: String }
+  url:     { type: String },
+  urlImg: { type: String }
 });
-
-//urlImg: { type: String }
 
 module.exports = mongoose.model('Track', trackSchema);  
