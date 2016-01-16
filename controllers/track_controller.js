@@ -119,7 +119,5 @@ exports.destroy = function (req, res) {
 	  console.log('Delete successful!  Server responded with:', resp.body);
 	});
 
-	// Borra la entrada del registro de datos
-	delete track_model.tracks[trackId];
 	res.redirect('/tracks');
 };
