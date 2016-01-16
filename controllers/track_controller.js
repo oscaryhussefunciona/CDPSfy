@@ -78,12 +78,14 @@ exports.create = function (req, res) {
 
         // Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
 
-	var url = 'http://tracks.cdpsfy.es/' + track.originalname;
+	var url = 'http://tracks.cdpsfy.es/cancion/' + track.originalname;
+	var urlImg = 'http://tracks.cdpsfy.es/imagen/' + image.originalname;
 
         // Escribe los metadatos de la nueva canción en el registro.
          var new_track = new Tracks({
                 name: name,
-                url: url
+                url: url,
+		urlImg: urlImg
           });
 
            new_track.save(function(err, new_track) {
