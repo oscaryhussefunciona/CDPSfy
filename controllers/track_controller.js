@@ -10,12 +10,9 @@ var Tracks = mongoose.model('Track');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
-        /*var tracks = track_model.tracks;
-        res.render('tracks/index', {tracks: tracks});*/
-        var Tracks = mongoose.model('Track');
+        //var Tracks = mongoose.model('Track');
         Tracks.find(function(err, tracks) {
             if(err) res.send(500, err.message);
-           // console.log(jsonp(tracks));
             res.render('tracks/index', {tracks: tracks});
         });
 };
@@ -29,14 +26,11 @@ exports.new = function (req, res) {
 // El campo track.url contiene la url donde se encuentra el fichero de audio
 
 exports.show = function (req, res) {
-        //var track = track_model.tracks[req.params.trackId];
-        //track.id = req.params.trackId;
-        //console.log(track.id);
+    
         //var Tracks = mongoose.model('Track');
 	console.log(req.params);
         Tracks.findOne({name: req.params.name}, function(err, track) {
 	    if(err) return res.send(500, err.message);
-
             res.render('tracks/show', {track: track});
         });
 };
@@ -50,7 +44,8 @@ exports.create = function (req, res) {
         console.log('Nuevo fichero de audio. Datos: ', track);
         var id = track.name.split('.')[0];
         var name = track.originalname.split('.')[0];
-        //var Tracks = mongoose.model('Track');
+        
+	//var Tracks = mongoose.model('Track');
         // Aquí debe implementarse la escritura del fichero de audio (track.buffer) en tracks.cdpsfy.es
 	
 	var data = {
