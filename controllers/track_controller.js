@@ -99,13 +99,18 @@ exports.create = function (req, res) {
 // TODO:
 // - Eliminar en tracks.cdpsfy.es el fichero de audio correspondiente a trackId
 exports.destroy = function (req, res) {
-	var trackId = req.params.trackId;
-	var track = track_model.tracks[req.params.trackId];
-	console.log(track.name);
 
 	// Aquí debe implementarse el borrado del fichero de audio indetificado por trackId en tracks.cdpsfy.es
 	
-	needle.request('delete', 'http://tracks.cdpsfy.es/' + track.name + '.mp3', null, function(err, resp) {
+	Tracks.findOne({name: req.params.trackId}, function(err, track) {
+	    track.remove(function(err, track) {
+                if (err) {
+                        console.log('Error al borrar el audio: ' + err);
+                };
+            });
+        });
+
+	needle.request('delete', 'http://tracks.cdpsfy.es/' + req.params.trackId + '.mp3', null, function(err, resp) {
 	  if (err) {
 	    return console.error('Delete failed:', err);
 	  }
