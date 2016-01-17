@@ -35,7 +35,7 @@ exports.show = function (req, res) {
 };
 
 // Escribe una nueva canción en el registro de canciones.
-// TODO:
+
 // - Escribir en tracks.cdpsfy.es el fichero de audio contenido en req.files.track.buffer
 // - Escribir en el registro la verdadera url generada al añadir el fichero en el servidor tracks.cdpsfy.es
 exports.create = function (req, res) {
@@ -52,19 +52,23 @@ exports.create = function (req, res) {
 	var datosImg =  image.buffer;
 	var originalImg = image.originalname;
 	
+	//extensiones de la imagen y el audio
+	var ext = track.mimetype.split('/')[1];
+	var ext1 = image.mimetype.split('/')[1];	
+
 	console.log('Nueva portada. Datos: ', image);
 	
 	var data = {
 	   image: {
 		    buffer       : datosImg,
 		    filename     : nameImg,
-		    content_type: 'image/jpg'
+		    content_type: 'image/' + ext1
 		  },
 		  
 	   track:  {
 		    buffer       : datos,
 		    filename     : name,
-		    content_type: 'audio/mp3' 
+		    content_type: 'audio/' + ext 
 		  }
 	}
 
@@ -74,7 +78,6 @@ exports.create = function (req, res) {
           }
           console.log('Upload successful!  Server responded with:', body);
         });
-        // Se ha realizado un envío del formulario al lb
 
         // Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
 
