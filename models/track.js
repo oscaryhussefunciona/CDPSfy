@@ -15,6 +15,7 @@ var mongoose = require('mongoose'),
 var trackSchema = new Schema({  
   name:    { type: String },
   url:     { type: String },
+  imgname: { type: String },
   urlImg: { type: String }
 });
 
