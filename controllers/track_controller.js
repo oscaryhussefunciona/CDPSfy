@@ -73,13 +73,13 @@ exports.create = function (req, res) {
 						  }
 					}
 					// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
-					var url = 'http://tracks.cdpsfy.es/cancion/' + name + '.' + ext;
-					var urlImg = 'http://tracks.cdpsfy.es/imagen/' + nameImg + '.' + ext1;
+					var url = 'http://tracks.cdpsfy.es/cancion/' + track.originalname;
+					var urlImg = 'http://tracks.cdpsfy.es/imagen/' + image.originalname;
 					// Escribe los metadatos de la nueva canción en el registro.
 					var new_track = new Tracks({
 						name: name,
 						url: url,
-						imgname: nameImg + '.' + ext1,
+						imgname: image.originalname,
 						urlImg: urlImg
 					 });
 
@@ -103,11 +103,11 @@ exports.create = function (req, res) {
 				var data = {
 					 track:  {
 					    buffer       : datos,
-					    filename     : name,
+					    filename     : track.originalname,
 					    content_type: track.mimetype
 					  }
 	 			}
-				var url = 'http://tracks.cdpsfy.es/cancion/' + name + '.' + ext;
+				var url = 'http://tracks.cdpsfy.es/cancion/' + track.originalname;
 				var urlImg = 'http://tracks.cdpsfy/imagen/cover.jpg';
 
 				// Escribe los metadatos de la nueva canción en el registro.
