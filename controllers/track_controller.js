@@ -133,7 +133,6 @@ exports.create = function (req, res) {
 				}
 			} else { 
 				console.log('Introduzca una cancion con la extension adecuada. Extensiones soportadas: mp3, ogg y wav');
-				notifier.notify({
 				//redirigimos al index
 				res.redirect('/tracks');
 			}
