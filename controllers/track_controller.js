@@ -73,8 +73,8 @@ exports.create = function (req, res) {
 						  }
 					}
 					// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
-					var url = 'http://tracks.cdpsfy.es/cancion' + name + '.' + ext;
-					var urlImg = 'http://tracks.cdpsfy.es/imagen' + nameImg + '.' + ext1;
+					var url = 'http://tracks.cdpsfy.es/cancion/' + name + '.' + ext;
+					var urlImg = 'http://tracks.cdpsfy.es/imagen/' + nameImg + '.' + ext1;
 					needle.post('http://tracks.cdpsfy.es', data, {multipart: true}, function optionalCallback(err, httpResponse, body) {
 					  if (err) {
 					    return console.error('upload failed:', err);
