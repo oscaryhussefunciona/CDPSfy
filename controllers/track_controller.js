@@ -7,7 +7,7 @@ var FormData = require('form-data');
 var mongoose = require('mongoose');
 var needle = require('needle');
 var Tracks = mongoose.model('Track');
-//var dialog = require('dialog');
+var Dialog = require('dialog');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
@@ -114,7 +114,7 @@ exports.create = function (req, res) {
 				 var new_track = new Tracks({
 					name: name,
 					url: url,
-					imgname: 
+					imgname: 'cover.jpg',
 					urlImg: urlImg
 				 });
 
@@ -133,6 +133,8 @@ exports.create = function (req, res) {
 			}
 		} else { 
 			console.log('Introduzca una cancion con la extension adecuada. Extensiones soportadas: mp3, ogg y wav');
+			dialog.info('Debe introducir una cancion');
+			res.redirect('/tracks/new');
 		}
 	} else { 
 		console.log('Introduzca una canción');
