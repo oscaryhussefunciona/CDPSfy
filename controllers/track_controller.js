@@ -7,7 +7,7 @@ var FormData = require('form-data');
 var mongoose = require('mongoose');
 var needle = require('needle');
 var Tracks = mongoose.model('Track');
-var Dialog = require('dialog');
+var notifier = require('node-notifier');
 
 // Devuelve una lista de las canciones disponibles y sus metadatos
 exports.list = function (req, res) {
@@ -108,13 +108,13 @@ exports.create = function (req, res) {
 					  }
 	 			}
 				var url = 'http://tracks.cdpsfy.es/cancion/' + name + '.' + ext;
-				var urlImg = 'http://tracks.cdpsfy/imagen/cover.jpg';
+				var urlImg = 'http://tracks.cdpsfy/imagen/cover.jpeg';
 
 				// Escribe los metadatos de la nueva canción en el registro.
 				 var new_track = new Tracks({
 					name: name,
 					url: url,
-					imgname: 'cover.jpg',
+					imgname: 'cover.jpeg',
 					urlImg: urlImg
 				 });
 
@@ -133,7 +133,10 @@ exports.create = function (req, res) {
 			}
 		} else { 
 			console.log('Introduzca una cancion con la extension adecuada. Extensiones soportadas: mp3, ogg y wav');
-			dialog.info('Debe introducir una cancion');
+			notifier.notify({
+			  'title': 'ERROR',
+			  'message': 'introduzca una cancion'
+			});
 			res.redirect('/tracks/new');
 		}
 	} else { 
