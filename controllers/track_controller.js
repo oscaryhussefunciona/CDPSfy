@@ -47,7 +47,7 @@ exports.create = function (req, res) {
 		var name = track.originalname.split('.')[0];
 		var datos = track.buffer;
 		var original = track.originalname; 
-		var ext = track.mimetype.split('/')[1];
+		var ext = track.extension;
 		if(ext == 'mp3' || ext == 'ogg' || ext== 'wav'){
 			console.log(ext);
 			var image = req.files.image;
@@ -56,20 +56,20 @@ exports.create = function (req, res) {
 				var nameImg = image.originalname.split('.')[0];
 				var datosImg =  image.buffer;
 				var originalImg = image.originalname;
-				var ext1 = image.mimetype.split('/')[1];
+				var ext1 = image.extension;
 				if (ext1 == 'bmp' || ext1 == 'jpg' || ext1 == 'png' || ext1 == 'jpeg'){
 					
 					var data = {
 					   image: {
 						    buffer       : datosImg,
-						    filename     : nameImg,
-						    content_type: 'image/' + ext1
+						    filename     : image.originalname,
+						    content_type: image.mimetype
 						  },
 						  
 					   track:  {
 						    buffer       : datos,
-						    filename     : name,
-						    content_type: 'audio/'+ ext
+						    filename     : track.originalname,
+						    content_type: track.mimetype
 						  }
 					}
 					// Esta url debe ser la correspondiente al nuevo fichero en tracks.cdpsfy.es
@@ -104,17 +104,17 @@ exports.create = function (req, res) {
 					 track:  {
 					    buffer       : datos,
 					    filename     : name,
-					    content_type: 'audio/'+ ext
+					    content_type: track.mimetype
 					  }
 	 			}
 				var url = 'http://tracks.cdpsfy.es/cancion/' + name + '.' + ext;
-				var urlImg = 'http://tracks.cdpsfy/imagen/cover.jpeg';
+				var urlImg = 'http://tracks.cdpsfy/imagen/cover.jpg';
 
 				// Escribe los metadatos de la nueva canción en el registro.
 				 var new_track = new Tracks({
 					name: name,
 					url: url,
-					imgname: 'cover.jpeg',
+					imgname: 'cover.jpg',
 					urlImg: urlImg
 				 });
 
