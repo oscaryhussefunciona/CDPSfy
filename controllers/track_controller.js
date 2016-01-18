@@ -108,13 +108,13 @@ exports.create = function (req, res) {
 					  }
 	 			}
 				var url = 'http://tracks.cdpsfy.es/cancion/' + track.originalname;
-				var urlImg = 'http://tracks.cdpsfy/imagen/cover.jpg';
+				var urlImg = 'http://tracks.cdpsfy.es/imagen/cover.jpg';
 
 				// Escribe los metadatos de la nueva canción en el registro.
 				 var new_track = new Tracks({
 					name: name,
 					url: url,
-					imgname: 'cover.jpg',
+					imgname: '',
 					urlImg: urlImg
 				 });
 
@@ -152,12 +152,14 @@ exports.destroy = function (req, res) {
 	// Aquí debe implementarse el borrado del fichero de audio indetificado por trackId en tracks.cdpsfy.es
 	
 	Tracks.findOne({name: req.params.trackId}, function(err, track) {
-	    needle.request('delete', 'http://tracks.cdpsfy.es/imagen/' + track.imgname, null, function(err, resp) {
-		  if (err) {
-		    return console.error('Delete failed:', err);
-		  }
-		  console.log('Delete successful!  Server responded with:', resp.body);
-	    });
+		if (track.imgname !== ''){
+			needle.request('delete', 'http://tracks.cdpsfy.es/imagen/' + track.imgname, null, function(err, resp) {
+			  if (err) {
+				return console.error('Delete failed:', err);
+			  }
+			  console.log('Delete successful!  Server responded with:', resp.body);
+			});
+		}
 	    track.remove(function(err, track) {
                 if (err) {
                         console.log('Error al borrar el audio: ' + err);
