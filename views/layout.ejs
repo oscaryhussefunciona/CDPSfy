@@ -2,20 +2,34 @@
 <html>
   <head>
     <title>CDPSfy</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' /> 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<!--<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+    <!--Fuentes-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  	<div id="header">
-    	<h1><a href="/">CDPSfy</a></h1>
-  	</div>
-    <div id="container">
-	    <div id="nav-bar">
-	    	<ul>
-	    		<li><a href="/tracks">My tracks</a></li>
-	    		<li><a href="/tracks/new">Upload new track</a></li>
-	    	</ul>
-	    </div>
-	    <div id="container-body"><%- body %></div>
-    </div>
+			<nav class="navbar navbar-fixed-top" role="navigation">
+				<div class="container">
+		      <div class="navbar-header">
+		          <img src="/images/logo1.png" alt="logo" width="50px" height="50px">
+							<span id="cdpsfy">CDPSfy</span>
+		      </div>
+		      <div class="navbar-right">
+		          <ul class="nav navbar-nav">
+		              <li class="active"><a href="/" ><span class="glyphicon glyphicon-home"></span>     Home</a></li>
+									<li class="active"><a href="/tracks" ><span class="glyphicon glyphicon-list"></span>     My Tracks</a></li>
+									<li class="active"><a href="/tracks/new" ><span class="glyphicon glyphicon-upload"></span>     Upload</a></li>
+									<li><form method="get" action="/buscar" class="navbar-form navbar-left" role="search" >
+		                  <input type="text" class="form-control" name="palabra" id="palabra" size="20" placeholder="Buscar canciones">
+		                  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+		              </form></li>
+							</ul>
+					</div>
+				</div>
+			</nav>
+		  <%- body %>
   </body>
 </html>

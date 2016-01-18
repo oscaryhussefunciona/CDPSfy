@@ -1,93 +1,158 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+	width: 100%;
+    height: 100%;
+	background-color: #E0FFFF;
+}
+html{
+	width: 100%;
+    height: 100%;
+	background-color: #E0FFFF;
+}
+/*Barra de Navegacion*/
+.navbar.navbar-fixed-top{
+    background-color: #B0C4DE;
+    border-bottom: 3px solid #746D6E;
 }
 
-a {
-  color: #00B7FF;
+.nav.navbar-nav li a{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color:#526666;
+    letter-spacing: 1px;
+}
+.nav.navbar-nav li a:hover{
+    background-color:#708090;
+    text-decoration: none;
+    color:#F4F3F3;
+}
+#cdpsfy{
+    font-family: 'Poiret One', bold;
+    font-size: 20px;
 }
 
-h1 a {
-	text-decoration: none;
-	color: black;
+/*Inicio*/
+#welcome{
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+    background-image: url("/images/fondo.jpg");
+    background-position: 20% 20%;
 }
-
-#header {
-	padding-bottom: 20px;
+#home{
+   margin-left:120px;
+   margin-bottom: 480px;
+   margin-top: 60px;
 }
-
-#nav-bar {
-	float: left;
-	height: 600px;
-	width: 200px;
-	border-right: 3px groove black;
+.cabecera h1{
+    font-family: 'Poiret One', bold;
+    font-size: 45px;
 }
-
-#nav-bar ul {
-	list-style-type: none;
-	padding-left: 0px;
+.cabecera p{
+    font-family: 'Poiret One', bold;
+    font-size: 23px;
 }
-
-#nav-bar li {
-	padding-bottom: 20px;
+/*Upload*/
+#subida{
+    width: 100%;
+    height: 100%;
+    background-color: #E0FFFF;
+    padding-top:80px;
 }
-
-#container-body {
-	padding-left: 250px;
-	width: 900px;
+#container{
+	margin-left: 190px;
+	margin-top: 8%;
 }
-
-#welcome {
-	padding-left: 50px;
-	text-align: center;
+#formu{
+    padding:20px;
+	margin-right: 50px;
+    font-family:'Raleway', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border:solid 3px;
 }
-
-#welcome span {
-	margin-top: 20px;
+.upload {
+	margin-right: 15%;
+    text-align: left;
+    border:solid 3px;
+    padding:48px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
-
+/*My tracks*/
+#tracks{
+    width: 100%;
+    height: 100%;
+    background-color: #E0FFFF;
+    padding-top:80px;
+}
 .track {
-	width: 300px;
-	height: 200px;
-	padding-top: 50px;
+	width: 250px;
+	height: 250px;
 	float: left;
-	text-decoration: none;
-	color: black;
 	text-align: center;
+	margin-left: 100px;
+	margin-top: 30px;
+	margin-bottom:30px;
 }
-
-.track_playing {
-	width: 500px;
-	height: 500px;
-	padding-left: 200px;
-}
-
-.track_playing button {
-	margin-top: 50px;
-}
-
 .track p {
 	text-align: center;
+	font-family:'Raleway', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+	margin-top: 10px;
+	margin-bottom: 15px;
 }
 
 .track img {
-	width: 60px;
-	height: 60px;
-	border: 1px groove black;
-	padding: 20px;
+	width: 250px;
+	height: 250px;
+	border: 3px solid #746D6E;
+}
+#names {
+	text-decoration: none;
+	color: black;
+}
+#names:hover{
+    background-color:#B0C4DE;
+    text-decoration: none;
+}
+#warntrack{
+	font-family:'Raleway', sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+.panel-warning{
+	margin-top: 30px;
 }
 
+/*Show*/
+#show{
+    width: 100%;
+    height: 100%;
+    background-color: #E0FFFF;
+    padding-top:80px;
+}
+.track_playing {
+	width: 400px;
+	height: 400px;
+	float: left;
+	text-align: center;
+	margin-left: 450px;
+}
 .track_playing img {
-	width: 100px;
-	height: 100px;
-	padding: 100px;
-}
+	width: 400px;
+	height: 400px;
+	margin-bottom: 10px;
+	border: 3px solid #746D6E;
 
-.track audio {
-	width: 100%;
 }
-
-.upload_field {
-	display: block;
-	margin-top: 15px;
+.track_playing p{
+	font-family:'Raleway', sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+	text-align: center;
+}
+.btn-danger{
+	margin-top: 10px;
 }

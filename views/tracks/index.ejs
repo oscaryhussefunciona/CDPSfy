@@ -1,10 +1,27 @@
-
-
-<%for (var t in tracks) {%>
-
-<a class="track" href='/tracks/<%=tracks[t].name%>'>
-	<img src="<%=tracks[t].urlImg%>">
-	<p><%=tracks[t].name%></p>
-</a>
-
-<%}%>
+<div class= "container" id="tracks">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+		    <div class="cabecera">
+			   <h1>MY TRACKS</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<% if(!tracks || tracks.length == 0) { %>
+			<div class="panel panel-warning">
+			  <div class="panel-body text-center">
+				<span id="warntrack">No hay ninguna cancion almacenada</span>
+			  </div>
+			</div>
+		<% } else { %>
+			<%for (var t in tracks) {%>
+				<div class="col-lg-4">
+					<a class="track" id="names" href='/tracks/<%=tracks[t].name%>'>
+						<img src="<%=tracks[t].urlImg%>" width="250px" height="250px">
+						<p><%=tracks[t].name%></p>
+					</a>
+				</div>
+			<%}%>
+		<%}%>
+	</div>
+</div>
