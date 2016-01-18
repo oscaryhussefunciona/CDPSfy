@@ -49,7 +49,7 @@ exports.create = function (req, res) {
 		var original = track.originalname; 
 		var ext = track.mimetype.split('/')[1];
 		if(ext == 'mp3' || ext == 'ogg' || ext== 'wav'){
-			console.log(extension);
+			console.log(ext);
 			var image = req.files.image;
 			if(image!==undefined){
 				console.log('Nueva portada. Datos: ', image);
@@ -103,7 +103,7 @@ exports.create = function (req, res) {
 					 track:  {
 					    buffer       : datos,
 					    filename     : name,
-					    content_type: 'audio/'+ extension
+					    content_type: 'audio/'+ ext
 					  }
 	 			}
 				var url = 'http://tracks.cdpsfy.es/cancion/' + name + '.' + ext;
