@@ -70,6 +70,9 @@ html{
     letter-spacing: 1px;
     border:solid 3px;
 }
+#error{
+    display: none;
+}
 .upload {
 	margin-right: 15%;
     text-align: left;
@@ -117,15 +120,17 @@ html{
     background-color:#B0C4DE;
     text-decoration: none;
 }
-#warntrack{
-	font-family:'Raleway', sans-serif;
+.warn{
+    font-family:'Raleway', sans-serif;
     font-size: 30px;
     letter-spacing: 1px;
 }
 .panel-warning{
 	margin-top: 30px;
 }
-
+.panel-danger{
+	margin-top: 30px;
+}
 /*Show*/
 #show{
     width: 100%;
@@ -155,4 +160,11 @@ html{
 }
 .btn-danger{
 	margin-top: 10px;
+}
+/*Busqueda*/
+.busqueda{
+    width: 100%;
+    height: 100%;
+    background-color: #E0FFFF;
+    padding-top:80px;
 }
