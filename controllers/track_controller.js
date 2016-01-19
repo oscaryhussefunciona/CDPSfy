@@ -57,7 +57,7 @@ exports.create = function (req, res) {
 					var originalImg = image.originalname;
 					var ext1 = image.extension;
 					//Comprobamos la extensión de la imagen
-					if (ext1 == 'bmp' || ext1 == 'jpg' || ext1 == 'png' || ext1 == 'jpeg'){
+					if (ext1 == 'bmp' || ext1 == 'jpg' || ext1 == 'png' || ext1 == 'jpeg' || ext1 == 'gif'){
 						//archivos enviados en la petición post al servidor
 						var data = {
 						   image: {
@@ -97,7 +97,7 @@ exports.create = function (req, res) {
 						  res.redirect('/tracks');
 						});
 					} else {
-						concole.log('Introduzca una imagen. Extensiones soportadas: bmp, jpg, png, jpeg');
+						concole.log('Introduzca una imagen. Extensiones soportadas: gif, bmp, jpg, png, jpeg');
 					}
 				} else {
 					var data = {
