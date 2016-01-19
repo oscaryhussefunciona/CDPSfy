@@ -63,8 +63,8 @@ html{
 	margin-top: 8%;
 }
 #formu{
-    padding:20px;
-	margin-right: 50px;
+    padding:15px;
+    margin-right: 50px;
     font-family:'Raleway', sans-serif;
     font-size: 18px;
     letter-spacing: 1px;
@@ -72,12 +72,18 @@ html{
 }
 #error{
     display: none;
+    margin-top: 30px;
+    margin-left: 200px;
+    text-align: center;
+    font-family:'Raleway', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 .upload {
-	margin-right: 15%;
+    margin-right: 15%;
     text-align: left;
     border:solid 3px;
-    padding:48px;
+    padding:42px;
     font-family: 'Raleway', sans-serif;
     font-size: 18px;
     letter-spacing: 1px;

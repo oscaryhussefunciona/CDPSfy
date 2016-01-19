@@ -1,3 +1,53 @@
+<script>
+function comprueba_extension(archivo, archivo2) { 
+
+   	extensiones = new Array(".mp3", ".ogg", ".wav"); 
+	extensionesImg = new Array(".jpg", ".jpeg", ".png", ".bmp", ".gif"); 
+
+    var error = document.getElementById('error');
+	var valid = false;
+
+    if (!archivo) { 
+      error.style.display = "block";
+      error.innerHTML = "Introduzca una canción";
+    } else { 
+      extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
+      permitidaMusica = false; 
+      for (var i = 0; i < extensiones.length; i++) { 
+         if (extensiones[i] == extension) { 
+         permitidaMusica = true; 
+         break; 
+         } 
+      }
+	  if (!permitidaMusica) { 
+         error.style.display = "block";
+     	 error.innerHTML = "Introduzca una canción con una extensión adecuada";
+      } else { 
+		if(!archivo2) { 			
+	        valid = true;
+					error.style.display = "none";
+		} else {
+			extensionI = (archivo2.substring(archivo2.lastIndexOf("."))).toLowerCase(); 
+			permitidaImg = false; 
+			for (var i = 0; i < extensionesImg.length; i++) { 
+				if (extensionesImg[i] == extensionI) { 
+					permitidaImg = true; 
+					break; 
+				} 
+			}
+			if (!permitidaImg) { 
+				error.style.display = "block";
+				error.innerHTML = "Introduzca una imagen con una extensión adecuada";
+			} else {
+				valid = true;
+				error.style.display = "none";
+			}
+		}
+      } 
+   	} 
+	return valid;
+}
+</script>
 <div class= "container" id="subida">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
@@ -6,9 +56,14 @@
 				    </div>
 		</div>
 	</div>
+	<div class="row">
+	 <div class="col-sm-12 col-md-10 alert-wrapper">
+        <span id="error" class="alert alert-danger"></span>
+    </div>
+	</div>
   <div class="row" id="container">
 		<div class="col-lg-6" id="formu">
-			<form action="/tracks" method="post" enctype="multipart/form-data" name="formulario" id="formulario">
+			<form action="/tracks" method="post" enctype="multipart/form-data"  name="formulario" id="formulario">
 				<div class="row">
 						<div class="col-md-8">
            			<div class="form-group">
@@ -27,7 +82,7 @@
 				</div>
 				<div class="row">
 						<div class="col-md-12">
-					  	<button class="btn btn-primary btn-lg pull-right" type="submit">Upload</button>
+					  	<button class="btn btn-primary btn-lg pull-right"  type="submit" onClick="return comprueba_extension(this.form.track.value, this.form.image.value)">Upload</button>
          		</div>
 				</div>
 			</form>
@@ -37,7 +92,7 @@
            	<p>
           	  <strong><u>Supported files:</u><br>
                     <i>Images:</i> <br>
-										png, bmp, jpg, jpeg<br>
+										png, bmp, jpg, jpeg, gif<br>
                     <i>Tracks:</i> <br>
 										mp3, ogg, wav</strong><br>
           	</p>
