@@ -176,24 +176,3 @@ exports.destroy = function (req, res) {
 	res.redirect('/tracks');
 };
 
-exports.buscar = function (req, res) {
-	//Búsqueda introducida
-	var busqueda = req.query.palabra;
-	//Si está vacía salta warning
-	if(busqueda ==''){
-	    res.render('buscar/criterios');
-	} else {
-		//Si no la busca en la base de datos y las muestra
-		Tracks.find({name: busqueda}, function(err, tracks) {
-		    if(err) {
-				res.send(500, err.message);
-		    }
-			//Si la canción no existe salta warning
-		    if(tracks == ''){ 
-				res.render('buscar/resultado'); 
-		    } else {
-				res.render('tracks/index', {tracks: tracks});
-			}
-		});
-	}
-};
